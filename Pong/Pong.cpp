@@ -71,11 +71,61 @@ public:
 
     friend ostream& operator<<(ostream& stream, Ball ball) {
         stream << "Ball [" << ball.x << "," << ball.y << "][" << ball.direction << "]" << endl;
+        return stream;
+    }
+};
+
+class Paddle {
+private:
+    int x, y;
+    int originalX, originalY;
+public:
+    Paddle() {
+        x = y = 0;
+    }
+    Paddle(int posX, int posY) : Paddle() {
+        originalX = posX;
+        originalY = posY;
+        x = posX;
+        y = posY;
+    }
+    inline void Reset() {
+        x = originalX;
+        y = originalY;
+    }
+    inline int getX() { return x; }
+    inline int getY() { return y; }
+    inline void moveUp() { y--; }
+    inline void moveDown() { y++; }
+
+    friend ostream& operator<<(ostream& stream, Paddle paddle) {
+        stream << "Paddle [" << paddle.x << "," << paddle.y << "]" << endl;
+        return stream;
     }
 };
 
 int main()
 {
+    Ball ball(0, 0);
+    cout << ball << endl;
+    ball.RandomDirection();
+    cout << ball << endl;
+    ball.Move();
+    cout << ball << endl;
+    ball.RandomDirection();
+    ball.Move();
+    cout << ball << endl;
+
+
+    Paddle p1(0, 0);
+    Paddle p2(10, 0);
+    cout << p1 << endl;
+    cout << p2 << endl;
+    p1.moveUp();
+    p2.moveDown();
+    cout << p1 << endl;
+    cout << p2 << endl;
+
     std::cout << "Hello World!\n";
 }
 
