@@ -144,12 +144,41 @@ public:
     }
     void Draw() {
         system("cls");
-        for (int i = 0; i < i < width + 2; i++)
-            cout << "#";
-        
-        for (int i = 0; i < i < width + 2; i++)
-            cout << "#";
+        for (int i = 0; i < width + 2; i++)
+            cout << "\xB2";
+        cout << endl;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                int ballx = ball->getX();
+                int bally = ball->getY();
 
+                int player1x = player1->getX();
+                int player1y = player1->getY();
+
+                int player2x = player2->getX();
+                int player2y = player2->getY();
+
+                if (j == 0) cout << "\xB2";
+                if (ballx == j && bally == i) cout << "o";
+                else if (player1x == j && player1y == i) cout << "\xDB";
+                else if (player2x == j && player2y == i) cout << "\xDB";
+                else if (player1x == j && player1y +1== i) cout << "\xDB";
+                else if (player1x == j && player1y +2== i) cout << "\xDB";
+                else if (player1x == j && player1y +3== i) cout << "\xDB";
+                else if (player2x == j && player2y +1== i) cout << "\xDB";
+                else if (player2x == j && player2y +2== i) cout << "\xDB";
+                else if (player2x == j && player2y +3== i) cout << "\xDB";
+                else cout << " ";
+
+                if (j == width - 1) cout << "\xB2";
+            }
+
+            cout << endl;
+        }
+
+        for (int i = 0; i < width + 2; i++)
+            cout << "\xB2";
+        cout << endl;
 
     }
 };
