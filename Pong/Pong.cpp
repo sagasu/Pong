@@ -142,29 +142,22 @@ public:
         player1->Reset();
         player2->Reset();
     }
+    void Draw() {
+        system("cls");
+        for (int i = 0; i < i < width + 2; i++)
+            cout << "#";
+        
+        for (int i = 0; i < i < width + 2; i++)
+            cout << "#";
+
+
+    }
 };
 
 int main()
 {
-    Ball ball(0, 0);
-    cout << ball << endl;
-    ball.RandomDirection();
-    cout << ball << endl;
-    ball.Move();
-    cout << ball << endl;
-    ball.RandomDirection();
-    ball.Move();
-    cout << ball << endl;
-
-
-    Paddle p1(0, 0);
-    Paddle p2(10, 0);
-    cout << p1 << endl;
-    cout << p2 << endl;
-    p1.moveUp();
-    p2.moveDown();
-    cout << p1 << endl;
-    cout << p2 << endl;
+    Game g(40, 20);
+    g.Draw();
 
     std::cout << "Hello World!\n";
 }
