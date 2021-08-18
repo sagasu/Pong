@@ -2,6 +2,9 @@
 //
 
 #include <iostream>
+#include <time.h>
+#include <conio.h>
+
 using namespace std;
 
 enum Dir {Stop = 0, Left = 1, UpLeft = 2, DownLeft = 3, Right = 4, UpRight = 5, DownRight=6};
@@ -101,6 +104,43 @@ public:
     friend ostream& operator<<(ostream& stream, Paddle paddle) {
         stream << "Paddle [" << paddle.x << "," << paddle.y << "]" << endl;
         return stream;
+    }
+};
+
+class Game {
+private:
+    int width, height;
+    int score1, score2;
+    char up1, down1, up2, down2;
+    bool quit;
+    Ball* ball;
+    Paddle* player1;
+    Paddle* player2;
+public:
+    Game(int w, int h) {
+        srand(time(NULL));
+        quit = false;
+        up1 = 'w';
+        up2 = 'i';
+        down1 = 's';
+        down2 = 'k';
+        score1 = score2 = 0;
+        width = w;
+        height = h;
+        ball = new Ball(w / 2, h / 2);
+        player1 = new Paddle(1, h/2 - 3);
+        player2 = new Paddle(w-2, h/2 - 3);
+    }
+    ~Game() {
+        delete ball, player1, player2;
+    }
+    void ScoreUp(Paddle* player) {
+        if (player == player1) score1++;
+        if (player == player2) score2++;
+
+        ball->Reset();
+        player1->Reset();
+        player2->Reset();
     }
 };
 
