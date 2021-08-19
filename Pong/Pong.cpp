@@ -181,6 +181,59 @@ public:
         cout << endl;
 
     }
+
+    void Input() {
+        ball->Move();
+
+        int ballx = ball->getX();
+        int bally = ball->getY();
+
+        int player1x = player1->getX();
+        int player1y = player1->getY();
+
+        int player2x = player2->getX();
+        int player2y = player2->getY();
+        if (_kbhit()) {
+            char current = _getch();
+            if (current == up1)
+                if (player1y > 0)
+                    player1->moveUp();
+            if (current == up1)
+                if (player2y > 0)
+                    player2->moveUp();
+            if (current == down1)
+                if (player1y +4 < height)
+                    player1->moveDown();
+            if (current == down1)
+                if (player2y +4 < height)
+                    player2->moveDown();
+
+            if (ball->getDirection() == Stop)
+                ball->RandomDirection();
+            if (current == 'q')
+                quit = true;
+
+
+        }
+       
+    }
+    void Colision() {
+        int ballx = ball->getX();
+        int bally = ball->getY();
+
+        int player1x = player1->getX();
+        int player1y = player1->getY();
+
+        int player2x = player2->getX();
+        int player2y = player2->getY();
+
+        for (int i = 0; i < 4; i++) {
+            if (ballx == player1x + 1)
+                if (bally == player1y + i)
+                    ball->ChangeDirection((Dir)((rand() % 3) + 4));
+
+        }
+    }
 };
 
 int main()
