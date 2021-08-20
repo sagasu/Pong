@@ -1,2 +1,2 @@
 # Pong
-Pong game in C++
+Pong game in C++, console version.
