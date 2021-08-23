@@ -176,6 +176,7 @@ public:
         for (int i = 0; i < width + 2; i++)
             cout << "\xB2";
         cout << endl;
+        cout << "Score 1: " << score1 << endl << "Score 2: " << score2 << endl;
 
     }
 
@@ -224,11 +225,36 @@ public:
         int player2x = player2->getX();
         int player2y = player2->getY();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) 
             if (ballx == player1x + 1)
                 if (bally == player1y + i)
                     ball->ChangeDirection((Dir)((rand() % 3) + 4));
+            
+        for (int i = 0; i < 4; i++) 
+            if (ballx == player2x -1 )
+                if (bally == player2y + i)
+                    ball->ChangeDirection((Dir)((rand() % 3) + 1));
 
+        if (bally == height - 1)
+            ball->ChangeDirection(ball->getDirection() == DownRight ? UpRight : UpLeft);
+        
+        if (bally == 0)
+            ball->ChangeDirection(ball->getDirection() == UpRight? DownRight: DownLeft);
+
+        if (ballx == width - 1)
+            ScoreUp(player1);
+        
+        if (ballx == 0)
+            ScoreUp(player2);
+            
+        
+    }
+
+    void Run() {
+        while (!quit) {
+            Draw();
+            Input();
+            Colision();
         }
     }
 };
@@ -236,7 +262,7 @@ public:
 int main()
 {
     Game g(40, 20);
-    g.Draw();
+    g.Run();
 
     std::cout << "Hello World!\n";
 }
